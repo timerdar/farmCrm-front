@@ -1,10 +1,12 @@
 export function OrdersList({orders}){
 
-    const s = document.createElement("div");
-    s.innerHTML = `<ul>
-        ${orders.forEach(order => {
-            </li>
-        })}
-    </ul>`;
+    const ul = document.createElement("ul");
 
+    orders.forEach(order => {
+        const li = document.createElement("li");
+        li.innerText = order;
+        ul.appendChild(li);
+    })
+    
+    return ul;
 }

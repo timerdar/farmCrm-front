@@ -1,4 +1,4 @@
-export function Button({text, onClick}) {
+export function Button(text, onClick) {
     const btn = document.createElement('button');
     btn.textContent = text;
     btn.addEventListener('click', onClick);
