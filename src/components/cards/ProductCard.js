@@ -5,7 +5,6 @@ export function ProductCard(product, onCostClick, onOrderedCountClick){
     const div = document.createElement("div");
     div.className = 'product-card';
     
-
     const nameDiv = document.createElement("div");
     nameDiv.className = 'product-name';
     nameDiv.innerText = `${product.name}`
