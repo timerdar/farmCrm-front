@@ -3,10 +3,10 @@ import { TextWithLabel } from "../TextWithLabel.js";
 export function ProductCard(product, onCostClick, onOrderedCountClick){
 
     const div = document.createElement("div");
-    div.className = 'product-card';
+    div.className = 'card';
     
     const nameDiv = document.createElement("div");
-    nameDiv.className = 'product-name';
+    nameDiv.className = 'name';
     nameDiv.innerText = `${product.name}`
     
     div.appendChild(nameDiv);
