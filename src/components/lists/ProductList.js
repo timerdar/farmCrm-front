@@ -1,13 +1,7 @@
+import { navigateTo } from "../../core/navigate.js";
 import { ProductCard } from "../cards/ProductCard.js";
 
-export function ProductList(productList){
-
-    const onCostClick = () => {
-        alert("Кликнули на стоимость");
-    }
-    const onCountClick = () => {
-        alert("Кликнули на количество");
-    }
+export function ProductList(productList, onCostClick, onCountClick){
 
     const list = document.createElement("ul");
     

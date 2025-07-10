@@ -12,10 +12,10 @@ export function ProductCard(product, onCostClick, onOrderedCountClick){
     div.appendChild(nameDiv);
 
     const cost = TextWithLabel("Цена", `${product.cost} рублей`);
-    cost.addEventListener('click', onCostClick);
+    cost.addEventListener('click', () => onCostClick(product.cost));
 
     const count = TextWithLabel("Заказано", `${product.count}`);
-    count.addEventListener('click', onOrderedCountClick);
+    count.addEventListener('click', () => onOrderedCountClick(product.id));
 
     div.appendChild(cost);
     div.appendChild(count);
