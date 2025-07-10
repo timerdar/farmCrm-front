@@ -25,7 +25,7 @@ li {
     margin-top: 50px;
 }
 
-.auth-form div{
+.auth-form div, .change-form div{
     flex: 1;
 }
 
@@ -62,9 +62,10 @@ li {
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
     min-width: 320px;
     margin-bottom: 15px;
+    gap: 10px
 }
 
-.text-with-label {
+.card .text-with-label {
     display: flex;
     flex-direction: column;
     flex: 1;
@@ -76,13 +77,12 @@ li {
     align-items: center;
     font-weight: bold;
     font-size: 24px;
-    flex: 1.5 1 100px;
+    flex: 1 1 100px;
 }
 
 .text-with-label .text-content{
     font-weight: bold;
     margin-top: 5px;
-    flex: 1 1;
     font-size: 24px;
     white-space: nowrap;
 }
@@ -124,3 +124,22 @@ li {
     border-radius: 4px;
 }
 
+
+/* CONSUMER WITH ORDERS CARD*/
+
+.consumer-with-orders-card{
+    display: flex;
+    flex-direction: column;
+    background-color: #f6fcff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    min-width: 320px;
+    margin-bottom: 15px;
+    gap: 10px
+}
+
+.mini-card{
+    font-size: 20px;
+    margin-bottom: 10px;
+}
