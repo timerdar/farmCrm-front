@@ -1,4 +1,5 @@
-import { Button } from "../components/Button.js";
+import { IconButton } from "../components/IconButton.js";
+import { Button } from "../components/Button.js"
 import { ErrorMessage } from "../components/ErrorMessage.js";
 import { navigateTo } from "../core/navigate.js";
 import { auth } from "../services/auth-service.js";
@@ -21,24 +22,31 @@ export function Auth(){
         login.placeholder = 'Логин';
         login.required = true;
 
+        const passwordDiv = document.createElement('div');
+        passwordDiv.className = 'password-div';
+
         const password = document.createElement("input");
         password.type = 'password';
         password.className = 'auth-input';
         password.placeholder = 'Пароль';
         password.required = true;
 
-        const seePasswordBnt = Button('Показать пароль', 
+        passwordDiv.appendChild(password);
+
+        const seePasswordBnt = IconButton('/src/assets/show.png', 
             function (event) {
                 event.preventDefault();
-                if (this.textContent === 'Показать пароль'){
-                    this.textContent = 'Скрыть пароль';
+                if (password.type === 'password'){
+                    this.setIcon('/src/assets/hide.png')
                     password.type = 'text';
                 }else{
-                    this.textContent = 'Показать пароль';
+                    this.setIcon('/src/assets/show.png')
                     password.type = 'password';
                 }
             }
         );
+
+        passwordDiv.appendChild(seePasswordBnt);
 
         const signin = Button('Войти', 
             () => {
@@ -53,9 +61,8 @@ export function Auth(){
         );
 
         form.appendChild(login);
-        form.appendChild(password);
+        form.appendChild(passwordDiv);
         form.appendChild(signin);
-        form.appendChild(seePasswordBnt);
         div.appendChild(form);
         
         return div;
