@@ -12,6 +12,7 @@ export function ProductList(productList){
     const list = document.createElement("ul");
     
     function render(data){
+        list.innerHTML = '';
         data.forEach(product => {
             const li = document.createElement("li");
             li.appendChild(ProductCard(product, onCostClick, onCountClick));
@@ -21,7 +22,7 @@ export function ProductList(productList){
 
     render(productList);
 
-    ul.update = render(productList);
+    list.update = render(productList);
     
     return list;
 

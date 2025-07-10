@@ -3,6 +3,7 @@ export function OrdersList(orders){
     const ul = document.createElement("ul");
 
     function render(data){
+        ul.innerHTML = '';
         data.forEach(order => {
             const li = document.createElement("li");
             li.innerText = `${order.productName}`;
