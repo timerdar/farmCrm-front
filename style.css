@@ -14,6 +14,8 @@ li {
 }
 
 .app {
+    margin: 0 auto;
+    max-width: 800px;
     padding: 10px;
 }
 
@@ -81,6 +83,13 @@ li {
 }
 
 .text-with-label .text-content{
+    font-weight: bold;
+    margin-top: 5px;
+    font-size: 24px;
+    white-space: nowrap;
+}
+
+.editable-text input {
     font-weight: bold;
     margin-top: 5px;
     font-size: 24px;
