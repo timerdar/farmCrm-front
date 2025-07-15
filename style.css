@@ -19,7 +19,7 @@ li {
     padding: 10px;
 }
 
-.auth-container{
+.auth-container {
     display: flex;
     flex-direction: column;
     justify-content: start;
@@ -27,7 +27,8 @@ li {
     margin-top: 50px;
 }
 
-.auth-form div, .change-form div{
+.auth-form div,
+.change-form div {
     flex: 1;
 }
 
@@ -36,21 +37,21 @@ li {
     margin-bottom: 5px;
     border: 0;
     flex: 1;
-    box-shadow: inset 0 -1px 0 rgba(0, 0 ,0 , .3);
+    box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .3);
 }
 
 /*PAGE CONTAINTER*/
-.container{
+.container {
     display: flex;
     flex-direction: column;
 }
 
 /*INPUT*/
-.search-input{
+.search-input {
     font-size: 24px;
     font-family: 'Montserrat', Arial, Helvetica, sans-serif;
     border: 0;
-    box-shadow: inset 0 -1px 0 rgba(0, 0 ,0 , .3);
+    box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .3);
     margin-bottom: 10px;
 }
 
@@ -82,7 +83,12 @@ li {
     flex: 1 1 100px;
 }
 
-.text-with-label .text-content{
+.label-row {
+    display: inline-flex;
+    gap: 4;
+}
+
+.text-with-label .text-content {
     font-weight: bold;
     margin-top: 5px;
     font-size: 24px;
@@ -96,35 +102,58 @@ li {
     white-space: nowrap;
 }
 
+.editable-text {
+    flex: 1 1 0;
+}
+
+.icon-label {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+  display: inline-block;
+}
+
+
 /* BUTTON */
 .button {
-    background-color: #4A90E2;     /* насыщенный синий */
-    color: #fff;                   /* белый текст */
-    margin-bottom: 10px;       
-    padding: 12px 28px;            /* внутренние отступы */
-    border: none;                  /* без рамки */
-    border-radius: 6px;            /* скругление углов */
-    font-size: 16px;               /* размер шрифта */
-    font-weight: 600;              /* полужирный шрифт */
-    cursor: pointer;               /* указатель при наведении */
+    background-color: #4A90E2;
+    /* насыщенный синий */
+    color: #fff;
+    /* белый текст */
+    margin-bottom: 10px;
+    padding: 12px 28px;
+    /* внутренние отступы */
+    border: none;
+    /* без рамки */
+    border-radius: 6px;
+    /* скругление углов */
+    font-size: 16px;
+    /* размер шрифта */
+    font-weight: 600;
+    /* полужирный шрифт */
+    cursor: pointer;
+    /* указатель при наведении */
     transition: background 0.2s, box-shadow 0.2s;
-    box-shadow: 0 2px 8px rgba(74,144,226,0.15); /* лёгкая тень */
+    box-shadow: 0 2px 8px rgba(74, 144, 226, 0.15);
+    /* лёгкая тень */
 }
 
 .button:hover {
-  background-color: #357ABD;     /* более тёмный синий при наведении */
-  box-shadow: 0 4px 16px rgba(74,144,226,0.25);
+    background-color: #357ABD;
+    /* более тёмный синий при наведении */
+    box-shadow: 0 4px 16px rgba(74, 144, 226, 0.25);
 }
 
 .button:active {
-  background-color: #285180;     /* ещё темнее при нажатии */
+    background-color: #285180;
+    /* ещё темнее при нажатии */
 }
 
 /* ICON BUTTON */
 .icon-button img {
     width: 24px;
     height: 24px;
-    object-fit: contain; 
+    object-fit: contain;
 }
 
 .icon-button {
@@ -136,7 +165,7 @@ li {
 
 /* CONSUMER WITH ORDERS CARD*/
 
-.consumer-with-orders-card{
+.consumer-with-orders-card {
     display: flex;
     flex-direction: column;
     background-color: #f6fcff;
@@ -148,7 +177,7 @@ li {
     gap: 10px
 }
 
-.mini-card{
+.mini-card {
     font-size: 20px;
     margin-bottom: 10px;
 }

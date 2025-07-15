@@ -11,7 +11,7 @@ export function EditableTextWithLabel(label, text, onAcceptClick){
     function renderContent(){
         elem.innerHTML = '';
 
-        const textWithLabel = TextWithLabel(label, `${currentValue} ${postFix}`);
+        const textWithLabel = TextWithLabel(label, `${currentValue} ${postFix}`, '/src/assets/edit.png');
         textWithLabel.addEventListener('click', () => renderInput());
         
         elem.appendChild(textWithLabel);
