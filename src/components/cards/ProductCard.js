@@ -1,6 +1,6 @@
 import { TextWithLabel } from "../TextWithLabel.js";
 
-export function ProductCard(product, onCostClick, onOrderedCountClick){
+export function ProductCard(product){
 
     const div = document.createElement("div");
     div.className = 'card';
@@ -12,10 +12,8 @@ export function ProductCard(product, onCostClick, onOrderedCountClick){
     div.appendChild(nameDiv);
 
     const cost = TextWithLabel("Цена", `${product.cost} рублей`);
-    cost.addEventListener('click', () => onCostClick(product.cost));
 
     const count = TextWithLabel("Заказано", `${product.count}`);
-    count.addEventListener('click', () => onOrderedCountClick(product.id));
 
     div.appendChild(cost);
     div.appendChild(count);
