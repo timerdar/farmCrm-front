@@ -1,7 +1,7 @@
-import { navigateTo } from "../../core/navigate.js";
 import { ProductCard } from "../cards/ProductCard.js";
+import { EditableProductCard } from "../cards/EditableProductCard.js";
 
-export function ProductList(productList, onCostClick, onCountClick){
+export function ProductList(productList, isEditable){
 
     const list = document.createElement("ul");
     
@@ -9,14 +9,18 @@ export function ProductList(productList, onCostClick, onCountClick){
         list.innerHTML = '';
         data.forEach(product => {
             const li = document.createElement("li");
-            li.appendChild(ProductCard(product, onCostClick, onCountClick));
+            if(isEditable){
+                li.appendChild(EditableProductCard(product));
+            }else{
+                li.appendChild(ProductCard(product));
+            }
             list.appendChild(li);
         })
     };
 
     render(productList);
 
-    list.update = render(productList);
+    list.update = render;
     
     return list;
 

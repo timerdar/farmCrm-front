@@ -1,4 +1,7 @@
-export function OrdersList(orders){
+import { EditableOrderCard } from "../cards/EditableOrderCard.js";
+import { OrderCard } from "../cards/OrderCard.js";
+
+export function OrdersList(orders, isEditable){
 
     const ul = document.createElement("ul");
 
@@ -6,7 +9,11 @@ export function OrdersList(orders){
         ul.innerHTML = '';
         data.forEach(order => {
             const li = document.createElement("li");
-            li.innerText = `${order.productName}`;
+            if(isEditable){
+                li.appendChild(EditableOrderCard(order));
+            }else{
+                li.appendChild(OrderCard(order));
+            }
             ul.appendChild(li);
         })
     }
