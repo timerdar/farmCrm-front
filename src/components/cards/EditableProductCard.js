@@ -1,4 +1,5 @@
-import { EditableTextWithLabel } from "../EditableTextWithLabel.js";
+import { navigateTo } from "../../core/navigate.js";
+import { EditableTextWithLabelForNumber } from "../EditableTextWithLabelForNumber.js";
 import { TextWithLabel } from "../TextWithLabel.js";
 
 export function EditableProductCard(product){
@@ -15,9 +16,13 @@ export function EditableProductCard(product){
     }
 
     div.appendChild(nameDiv);
-    const cost = EditableTextWithLabel("Цена", `${product.cost} руб`, onclick);
+    const cost = EditableTextWithLabelForNumber("Цена", `${product.cost} руб`, onclick);
     const count = TextWithLabel("Заказано", `${product.count}`);
-    const createdCount = EditableTextWithLabel("Изготовлено", `${product.createdCount} шт.`, onclick);
+    const createdCount = EditableTextWithLabelForNumber("Изготовлено", `${product.createdCount} шт.`, onclick);
+
+    count.addEventListener('click', () => {
+        navigateTo(`/products/${product.id}/orders`);
+    })
 
     div.appendChild(cost);
     div.appendChild(count);
