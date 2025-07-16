@@ -68,7 +68,7 @@ li {
     gap: 10px
 }
 
-.card .text-with-label {
+.card .text-with-label, .replacable-div {
     display: flex;
     flex-direction: column;
     flex: 1;
@@ -92,10 +92,10 @@ li {
     font-weight: bold;
     margin-top: 5px;
     font-size: 24px;
-    white-space: nowrap;
+    min-width: 0;
 }
 
-.editable-text input {
+.editable-text input, .creation-input {
     font-weight: bold;
     margin-top: 5px;
     font-size: 24px;
