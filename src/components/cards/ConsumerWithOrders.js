@@ -1,34 +1,35 @@
 import { TextWithLabel } from "../TextWithLabel.js";
 import { ConsumerCard } from "./ConsumerCard.js";
 import { MiniOrderCard } from "./MiniOrderCard.js";
+import { IconButton } from "../IconButton.js";
 
-export function ConsumerWithOrders(consumer, orders){
+export function ConsumerWithOrders(consumer, orders) {
 
     const card = document.createElement("div");
     card.className = 'consumer-with-orders-card';
 
-    var sum = 0;
-    orders.forEach(order => {
-        sum += order.cost;
-    })
+    function renderWithOrders(){
+        card.innerHTML = '';
+        const consumerCard = ConsumerCard(consumer, () => {});
+        consumerCard.appendChild(IconButton('/src/assets/arrow-up.png', renderWithoutOrders));
+        card.appendChild(consumerCard);
+        
+        const ul = document.createElement("ul");
+        orders.forEach(order => {
+            const orderCard = MiniOrderCard(order);
+            ul.appendChild(orderCard);
+        });
+        card.appendChild(ul);
+    }
 
-    const consumerCard = ConsumerCard(consumer, () => {});
-    consumerCard.appendChild(TextWithLabel("Сумма", `${sum} руб`))
+    function renderWithoutOrders(){
+        card.innerHTML = '';
+        const consumerCard = ConsumerCard(consumer, () => {});
+        consumerCard.appendChild(IconButton('/src/assets/arrow-down.png', renderWithOrders));
+        card.appendChild(consumerCard);
+    }
 
-    card.appendChild(consumerCard);
-    
-    const ul = document.createElement("ol");
-    orders.forEach(order => {
-        const li = document.createElement("li");
-        const orderCard = MiniOrderCard(order);
-        li.appendChild(orderCard);
-        ul.appendChild(li);
-    })
-
-    card.appendChild(ul);
-
-
+    renderWithoutOrders();
     return card;
-
 
 }

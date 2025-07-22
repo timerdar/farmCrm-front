@@ -95,7 +95,7 @@ li {
     min-width: 0;
 }
 
-.editable-text input, .creation-input {
+.editable-text input {
     font-weight: bold;
     margin-top: 5px;
     font-size: 24px;
@@ -105,6 +105,26 @@ li {
 .editable-text {
     flex: 1 1 0;
 }
+
+/*CREATION CARD*/
+
+.creation-card {
+    display: flex;
+    flex-direction: column;
+    background-color: #f6fcff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    min-width: 320px;
+    margin-bottom: 15px;
+    gap: 10px
+}
+
+.forms {
+    display: flex;
+    flex-direction: row;
+}
+
 
 .icon-label {
   width: 14px;

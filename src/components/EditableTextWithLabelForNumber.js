@@ -3,11 +3,12 @@ import { TextWithLabel } from "./TextWithLabel.js";
 
 export function EditableTextWithLabelForNumber(label, text, onAcceptClick){
 
+
     let splitted = text.split(" ");
     let currentValue = splitted[0];
     let postFix;
     if (splitted.length > 1){
-        postFix = splitted.slice(1, splitted.length - 1).join(" ");
+        postFix = splitted.slice(1, splitted.length).join(" ");        
     }else{
         postFix = '';
     }
@@ -16,7 +17,7 @@ export function EditableTextWithLabelForNumber(label, text, onAcceptClick){
 
     function renderContent(){
         elem.innerHTML = '';
-
+        
         const textWithLabel = TextWithLabel(label, `${currentValue} ${postFix}`, '/src/assets/edit.png');
         textWithLabel.addEventListener('click', () => renderInput());
         
