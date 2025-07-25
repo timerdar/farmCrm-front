@@ -1,5 +1,5 @@
 import { ProductCard } from "../cards/ProductCard.js";
-import { EditableProductCard } from "../cards/EditableProductCard.js";
+import { EditableProductCard } from "../cards/editable/EditableProductCard.js";
 
 export function ProductList(productList, isEditable){
 

@@ -1,7 +1,7 @@
 import { createProduct } from "../../services/product-service.js";
 import { IconButton } from "../IconButton.js";
 
-export function ProductCreation(onAcceptClick){
+export function ProductCreation(updateClick){
 
     const mainDiv = document.createElement("div");
     mainDiv.className = 'creation-card';
@@ -25,13 +25,13 @@ export function ProductCreation(onAcceptClick){
     priceInput.placeholder = 'Цена';
     div.appendChild(priceInput);
 
-    div.appendChild(IconButton('/src/assets/accept.png', () => {
-        createProduct(nameInput.value);    
-        onAcceptClick();
-    }
-    ))
+    div.appendChild(IconButton('/src/assets/accept.png', () => {        
+        createProduct(nameInput.value, Number(priceInput.value));    
+        updateClick();
+    }))
+
     div.appendChild(IconButton('/src/assets/close.png', () => {
-        onAcceptClick();
+        updateClick();
     }))
 
     mainDiv.appendChild(div);

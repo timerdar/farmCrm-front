@@ -1,4 +1,4 @@
-import { EditableOrderCard } from "../cards/EditableOrderCard.js";
+import { EditableOrderCard } from "../cards/editable/EditableOrderCard.js";
 import { OrderCard } from "../cards/OrderCard.js";
 
 export function OrdersList(orders, isEditable){

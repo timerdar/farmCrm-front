@@ -3,14 +3,11 @@ import { Button } from "../../components/Button.js";
 import { navigateTo } from "../../core/navigate.js";
 import { IconButton } from "../../components/IconButton.js";
 import { ProductCreation } from "../../components/creation_forms/ProductCreation.js";
+import { getProductsList } from "../../services/product-service.js";
 
 export function Products() {
 
-    const products = [];
-
-    for (let i = 0; i < 100; i++) {
-        products.push({ id: i, name: `Товар ${i}`, count: 10, cost: 233, createdCount: 3*i});
-    }
+    var products = getProductsList();
 
     const div = document.createElement("div");
     div.className = 'container';
@@ -30,10 +27,12 @@ export function Products() {
     replacableDiv.className = 'replacable-div'
     div.appendChild(replacableDiv);
 
+    const productList = ProductList(products, true);
+
     function setButton() {
-        const addProductBtn = Button("Добавить продукт", () => {
-            setForm()
-        })
+        const addProductBtn = Button("Добавить продукт", setForm)
+        products = getProductsList();
+        productList.update(products);
         replacableDiv.innerHTML = '';
         replacableDiv.appendChild(addProductBtn);
     }
@@ -45,7 +44,6 @@ export function Products() {
     }
 
     setButton();
-    const productList = ProductList(products, true);
 
     searchInput.addEventListener('input', () => {
         if (searchInput.value === '') {
