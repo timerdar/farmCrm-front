@@ -4,17 +4,20 @@ export function ConsumerCard(consumer, onClick){
 
     const card = document.createElement("div");
     card.className = 'card';
+    card.addEventListener('click', () => onClick(consumer.id));
+
 
     const nameDiv = document.createElement("div");
     nameDiv.className = 'name';
 
     nameDiv.innerText = `${consumer.name}`;
-    nameDiv.addEventListener('click', () => onClick(consumer.id));
 
     card.appendChild(nameDiv);
     
     card.appendChild(TextWithLabel("Адрес", consumer.address));
-    card.appendChild(TextWithLabel("Телефон", consumer.mobilePhone));
+    card.appendChild(TextWithLabel("Телефон", consumer.phone));
+    console.log(consumer);
+    
 
     return card;
 
