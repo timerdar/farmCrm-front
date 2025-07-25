@@ -1,6 +1,6 @@
 import { Button } from "../../components/Button.js";
 import { ConsumerCard } from "../../components/cards/ConsumerCard.js";
-import { EditableConsumerCard } from "../../components/cards/EditableConsumerCard.js";
+import { EditableConsumerCard } from "../../components/cards/editable/EditableConsumerCard.js";
 import { OrdersList } from "../../components/lists/OrdersList.js";
 import { TextWithLabel } from "../../components/TextWithLabel.js";
 

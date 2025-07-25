@@ -1,5 +1,5 @@
-import { EditableTextWithLabelForNumber } from "../EditableTextWithLabelForNumber.js";
-import { TextWithLabel } from "../TextWithLabel.js";
+import { EditableTextWithLabelForNumber } from "../../EditableTextWithLabelForNumber.js";
+import { TextWithLabel } from "../../TextWithLabel.js";
 
 export function EditableOrderCard(order){
 

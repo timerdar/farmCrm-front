@@ -1,6 +1,6 @@
-import { changeAddress, changePhone } from "../../services/consumer-service.js";
-import { EditableTextWithLabelForNumber } from "../EditableTextWithLabelForNumber.js";
-import { EditableTextWithLabelForString } from "../EditableTextWithLabelForString.js";
+import { changeAddress, changePhone } from "../../../services/consumer-service.js";
+import { EditableTextWithLabelForNumber } from "../../EditableTextWithLabelForNumber.js";
+import { EditableTextWithLabelForString } from "../../EditableTextWithLabelForString.js";
 
 export function EditableConsumerCard(consumer, onClick){
 
