@@ -23,7 +23,7 @@ export function MiniOrderCard(order){
 
     const nameDiv = document.createElement("div");
     nameDiv.className = 'name';
-    nameDiv.innerText = order.productName;
+    nameDiv.innerText = order.name;
     div.appendChild(nameDiv);
 
     const mainDiv = document.createElement("div");

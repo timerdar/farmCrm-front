@@ -5,12 +5,16 @@ import { Consumers } from "../routes/consumers/Consumers.js";
 import { Products } from "../routes/products/Products.js";
 import { Delivery } from "../routes/delivery/Delivery.js"
 import { OrdersOfConsumer } from "../routes/orders/OrdersOfConsumer.js";
+import { OrdersOfProduct } from "../routes/orders/OrdersOfProduct.js";
+import { DeliverySummary } from "../routes/delivery/DeliverySummary.js";
 
 const routes = {
     '^/menu$': Menu,
     '^/consumers/(.*?)/orders$': OrdersOfConsumer,
+    '^/products/(.*?)/orders$': OrdersOfProduct,
     '^/consumers$': Consumers,
     '^/products$': Products,
+    '^/delivery/summary$': DeliverySummary,
     '^/delivery$': Delivery,
     '^/$': Auth
 }
