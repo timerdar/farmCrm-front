@@ -1,7 +1,7 @@
 import { Button } from "../../components/Button.js";
 import { ConsumerWithOrders } from "../../components/cards/ConsumerWithOrders.js";
 import { navigateTo } from "../../core/navigate.js";
-import { getDeliveryOrdersOfConsumer } from "../../services/order-service.js";
+import { clearDelivery, getDeliveryOrders } from "../../services/order-service.js";
 
 export function Delivery(){
 
@@ -9,12 +9,22 @@ export function Delivery(){
     div.className = 'container';
     
     const seeSummaryOfProductsBtn = Button("Сводку по продукции", () => {navigateTo('/delivery/summary')});
+    const cleanDeliveryBtn = Button('Очистить доставку', () => {
+        if (confirm("Точно готовы почистить доставку?")){
+            clearDelivery();
+        }
+    })
     div.appendChild(seeSummaryOfProductsBtn);
+    div.appendChild(cleanDeliveryBtn);
 
-    const consumer = {id: 1, name: "Заказчик", address: "Кольцевая 123", mobilePhone: "8989988888"};
-    const orders = getDeliveryOrdersOfConsumer(consumer.id);
+    //const consumer = {id: 1, name: "Заказчик", address: "Кольцевая 123", mobilePhone: "8989988888"};
+    //const orders = getDeliveryOrdersOfConsumer(consumer.id);
 
-    div.appendChild(ConsumerWithOrders(consumer, orders))
+    const delivery = getDeliveryOrders();
+
+    for (let consumer of delivery){
+        div.appendChild(ConsumerWithOrders(consumer, consumer.orders));
+    }
     
     return div;
 
