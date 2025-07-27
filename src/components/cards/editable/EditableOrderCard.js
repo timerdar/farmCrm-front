@@ -29,8 +29,9 @@ export function EditableOrderCard(order) {
 
     invis.appendChild(IconButton('/src/assets/delivery.png',
         () => {
-            changeOrderStatus(order.id, 'DELIVERY');
-            invis.innerHTML = '';
+            if (changeOrderStatus(order.id, 'DELIVERY')){
+                invis.innerHTML = '';
+            };
         }))
 
     return card;

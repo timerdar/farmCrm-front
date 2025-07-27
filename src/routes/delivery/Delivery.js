@@ -17,9 +17,6 @@ export function Delivery(){
     div.appendChild(seeSummaryOfProductsBtn);
     div.appendChild(cleanDeliveryBtn);
 
-    //const consumer = {id: 1, name: "Заказчик", address: "Кольцевая 123", mobilePhone: "8989988888"};
-    //const orders = getDeliveryOrdersOfConsumer(consumer.id);
-
     const delivery = getDeliveryOrders();
 
     for (let consumer of delivery){

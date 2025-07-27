@@ -1,6 +1,7 @@
 import { changeOrderStatus } from "../../services/order-service.js";
+import { IconButton } from "../IconButton.js";
 
-export function MiniOrderCard(order){
+export function MiniOrderCard(order, update){
 
     const div = document.createElement("div");
     div.className = 'mini-card';
@@ -36,6 +37,15 @@ export function MiniOrderCard(order){
     }
 
     div.appendChild(mainDiv);
+    const invis = document.createElement("div");
+
+    invis.appendChild(IconButton('/src/assets/product-return.png', () => {
+        if (changeOrderStatus(order.id, 'CREATED')){
+            invis.innerHTML = '';
+        }
+    }));
+
+    div.appendChild(invis);
 
     return div;
 
