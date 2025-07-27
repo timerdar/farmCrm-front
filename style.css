@@ -198,6 +198,18 @@ li {
 }
 
 .mini-card {
+    display: flex;
+    width: 50%;
     font-size: 20px;
     margin-bottom: 10px;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.mini-card .name {
+    font-weight: bold;
+}
+
+.mini-card .checkbox{
+    transform: scale(1.5);   
 }

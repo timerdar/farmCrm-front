@@ -16,7 +16,6 @@ export function ConsumerCard(consumer, onClick){
     
     card.appendChild(TextWithLabel("Адрес", consumer.address));
     card.appendChild(TextWithLabel("Телефон", consumer.phone));
-    console.log(consumer);
     
 
     return card;

@@ -7,22 +7,27 @@ export function MiniOrderCard(order){
 
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
+    checkbox.className = 'checkbox';
 
     checkbox.addEventListener('click', () => {
         if (checkbox.checked){
             changeOrderStatus(order.id, 'DONE');
+            div.style.backgroundColor = 'green';
         }else{
             changeOrderStatus(order.id, 'DELIVERY');
+            div.style.backgroundColor = 'white';
         }
     });
 
     div.appendChild(checkbox);
 
     const nameDiv = document.createElement("div");
-    nameDiv.className = 'mini-order-name';
+    nameDiv.className = 'name';
+    nameDiv.innerText = order.productName;
     div.appendChild(nameDiv);
 
     const mainDiv = document.createElement("div");
+    mainDiv.className = 'info';
 
     if (order.isProductWeight){
         mainDiv.innerText = `${order.count} шт. ${order.weight} кг. ${order.cost} руб.`
