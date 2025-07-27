@@ -20,7 +20,7 @@ export function OrdersList(orders, isEditable){
     
     render(orders);
     
-    ul.update = render(orders);
+    ul.update = render;
 
     return ul;
 }

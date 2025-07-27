@@ -22,3 +22,10 @@ export function changeCreatedCount(productId, newCreatedCount){
     console.log(`${productId} изменили изготовлено на ${newCreatedCount}`);
     return true;
 }
+
+export function getShortProductsList(){
+    return [
+        {id: 1, name: "Яйцо"},
+        {id: 2, name: "Курица"}
+    ]
+}

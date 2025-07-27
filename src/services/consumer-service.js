@@ -25,3 +25,7 @@ export function createConsumer(name, address, phone){
         )
     }
 }
+
+export function getConsumer(consumerId){
+    return {id: 13, name: "Заказчик", address: "Кольцевая 123, кв 123 второй подъезд", mobilePhone: "8989988888", totalSum: 12334};
+}

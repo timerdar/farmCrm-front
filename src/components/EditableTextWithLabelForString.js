@@ -1,21 +1,21 @@
 import { TextWithLabel } from "./TextWithLabel.js";
 
-export function EditableTextWithLabelForString(label, text, onAcceptClick){
+export function EditableTextWithLabelForString(label, text, onAcceptClick) {
 
     let currentValue = text;
     const elem = document.createElement("div");
     elem.className = 'editable-text';
 
-    function renderContent(){
+    function renderContent() {
         elem.innerHTML = '';
 
         const textWithLabel = TextWithLabel(label, `${currentValue}`, '/src/assets/edit.png');
         textWithLabel.addEventListener('click', () => renderInput());
-        
+
         elem.appendChild(textWithLabel);
     }
 
-    function renderInput(){
+    function renderInput() {
         elem.innerHTML = '';
 
         const input = document.createElement('input');
@@ -23,13 +23,18 @@ export function EditableTextWithLabelForString(label, text, onAcceptClick){
         input.placeholder = label;
 
         input.addEventListener('blur', () => {
-            onAcceptClick(input.value);
-            currentValue = input.value;
-            renderContent();
+            if (!input.value) {
+                input.value = text;
+                renderContent();
+            } else {
+                onAcceptClick(input.value);
+                renderContent();
+                currentValue = input.value;
+            }
         })
 
         input.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter'){
+            if (e.key === 'Enter') {
                 input.blur();
             }
         })

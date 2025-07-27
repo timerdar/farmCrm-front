@@ -8,7 +8,7 @@ export function EditableOrderCard(order){
 
     const nameDiv = document.createElement('div');
     nameDiv.className = 'name';
-    nameDiv.textContent = order.name;
+    nameDiv.textContent = order.productName;
     card.appendChild(nameDiv);
 
     const onclick = () => {};

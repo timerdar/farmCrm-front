@@ -1,11 +1,20 @@
 import { Button } from "../../components/Button.js";
-import { ConsumerCard } from "../../components/cards/ConsumerCard.js";
 import { EditableConsumerCard } from "../../components/cards/editable/EditableConsumerCard.js";
+import { OrderCreation } from "../../components/creation_forms/OrderCreation.js";
 import { OrdersList } from "../../components/lists/OrdersList.js";
 import { TextWithLabel } from "../../components/TextWithLabel.js";
+import { getCreatedOrdersOfConsumer } from "../../services/order-service.js";
+import { getConsumer } from "../../services/consumer-service.js";
 
 export function OrdersOfConsumer(){
     
+    const id = extractId();
+    console.log(id);
+    
+
+    const consumer = getConsumer(id);
+    var orders = [];
+
     const div = document.createElement('div');
     div.className = 'container';
 
@@ -13,18 +22,33 @@ export function OrdersOfConsumer(){
     h1.textContent = 'Карта заказчика';
     div.appendChild(h1);
 
-    const consumer = {id: 13, name: "Заказчик", address: "Кольцевая 123, кв 123 второй подъезд", mobilePhone: "8989988888", totalSum: 12334};
 
     const consumerCard = EditableConsumerCard(consumer, () => {});
     consumerCard.appendChild(TextWithLabel("Сумма выкупа", `${consumer.totalSum} руб.`));
     div.appendChild(consumerCard);
 
-    const addOrderBtn = Button("Добавить заказ", () => {});
-    div.appendChild(addOrderBtn);
-
-    const orders = [{id: 1, name: "Яйца", count: 10, cost: 233, amount: 3, isProductWeight: true, weight: 0.56}]
+    const replacableDiv = document.createElement("div");
+    replacableDiv.className = 'replacable-div'
+    div.appendChild(replacableDiv);
 
     const ordersList = OrdersList(orders, true);
+
+    function setButton(){
+        const addOrderBtn = Button("Добавить заказ", setForm);
+        orders = getCreatedOrdersOfConsumer(id);
+        ordersList.update(orders);
+        replacableDiv.innerHTML = '';
+        replacableDiv.appendChild(addOrderBtn);
+    }
+
+    function setForm(){
+        const creationForm = OrderCreation(id, setButton);
+        replacableDiv.innerHTML = '';
+        replacableDiv.appendChild(creationForm);
+    }
+
+    setButton();
+
     div.appendChild(ordersList);
 
     return div;
@@ -33,7 +57,7 @@ export function OrdersOfConsumer(){
 
 function extractId(){
     const hash = location.hash;
-    const regex = /consumer\/(.*?)\/order/;
+    const regex = /consumers\/(.*?)\/orders/;
     const id = hash.match(regex);
-    return id;
+    return id[1];
 }
