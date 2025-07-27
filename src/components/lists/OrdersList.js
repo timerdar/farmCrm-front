@@ -4,6 +4,7 @@ import { OrderCard } from "../cards/OrderCard.js";
 export function OrdersList(orders, isEditable){
 
     const ul = document.createElement("ul");
+    ul.id = 'parent-list';
 
     function render(data){
         ul.innerHTML = '';
