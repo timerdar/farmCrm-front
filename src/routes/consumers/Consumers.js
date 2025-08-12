@@ -4,9 +4,9 @@ import { ConsumersList } from "../../components/lists/ConsumersList.js";
 import { navigateTo } from "../../core/navigate.js";
 import { getConsumersList } from "../../services/consumer-service.js";
 
-export function Consumers(){
+export async function Consumers(){
 
-    var consumers = getConsumersList();
+    var consumers = await getConsumersList();
 
     const div = document.createElement("div");
     div.className = 'container';
@@ -29,9 +29,9 @@ export function Consumers(){
         navigateTo(`/consumers/${id}/orders`);
     });
 
-    function setButton(){
+    async function setButton(){
         const addNewConsumerBtn = Button("Добавить заказчика", setForm);
-        consumers = getConsumersList();
+        consumers = await getConsumersList();
         list.update(consumers);
         replacableDiv.innerHTML = '';
         replacableDiv.appendChild(addNewConsumerBtn);
@@ -43,7 +43,7 @@ export function Consumers(){
         replacableDiv.appendChild(creationForm);
     }
 
-    setButton();    
+    await setButton();    
 
 
     searchInput.addEventListener('input', () => {

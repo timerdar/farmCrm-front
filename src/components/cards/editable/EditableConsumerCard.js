@@ -16,7 +16,7 @@ export function EditableConsumerCard(consumer, onClick){
     card.appendChild(nameDiv);
     
     card.appendChild(EditableTextWithLabelForString("Адрес", consumer.address, (newAddress) => {onAddressChange(newAddress)}));
-    card.appendChild(EditableTextWithLabelForString("Телефон", consumer.mobilePhone, (newPhone) => {onPhoneChange(newPhone)}));
+    card.appendChild(EditableTextWithLabelForString("Телефон", consumer.phone, (newPhone) => {onPhoneChange(newPhone)}));
 
     return card;
 

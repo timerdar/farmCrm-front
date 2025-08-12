@@ -27,9 +27,11 @@ export function EditableTextWithLabelForString(label, text, onAcceptClick) {
                 input.value = text;
                 renderContent();
             } else {
-                onAcceptClick(input.value);
-                renderContent();
-                currentValue = input.value;
+                var success = onAcceptClick(input.value);
+                if(success){
+                    renderContent();
+                    currentValue = input.value;
+                }                
             }
         })
 

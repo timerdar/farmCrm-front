@@ -6,13 +6,13 @@ import { TextWithLabel } from "../../components/TextWithLabel.js";
 import { getCreatedOrdersOfConsumer } from "../../services/order-service.js";
 import { getConsumer } from "../../services/consumer-service.js";
 
-export function OrdersOfConsumer(){
+export async function OrdersOfConsumer(){
     
     const id = extractId();
     console.log(id);
     
 
-    const consumer = getConsumer(id);
+    const consumer = await getConsumer(id);
     var orders = [];
 
     const div = document.createElement('div');
