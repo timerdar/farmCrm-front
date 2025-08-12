@@ -22,7 +22,7 @@ const routes = {
 export function router() {
     const hash = location.hash.slice(1);
 
-    var page = NotFound;
+    let page = NotFound;
 
     if (hash === '') {
         page = Auth;
@@ -38,7 +38,11 @@ export function router() {
 
     const app = document.getElementById('app');
 
-    app.innerHTML = '';
+    app.innerHTML = '<div class="loader">Загрузка...</div>';
 
-    app.appendChild(page());
+    (async () => {
+        const s = await page();
+        app.innerHTML = '';
+        app.appendChild(s);
+    })();
 };
