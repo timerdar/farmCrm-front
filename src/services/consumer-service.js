@@ -1,8 +1,18 @@
 import { api } from '../core/api.js';
 
-export function changeAddress(consumerId, newAddress){
+export async function changeAddress(consumerId, newAddress){
+    try{
+        const data = {
+            id: consumerId,
+            address: newAddress
+        };
 
-    console.log(`Для юзера с id = ${consumerId} поменяли адрес на ${newAddress}`);
+        const response = await api().post('/api/consumers/change-address', data);
+        return response.status === 200;
+    }catch(e){
+        console.log(e);
+        throw e;
+    }
 
 }
 
@@ -19,8 +29,6 @@ export async function changePhone(consumerId, newPhone){
         console.log(e);
         throw e;
     }
-    console.log(`Для юзера с id = ${consumerId} поменяли телефон на ${newPhone}`);
-    
 }
 
 const consumers = [{id: 1, name: "Абоба 1", address: "Адрес1", phone: '9012319231023'},

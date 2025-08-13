@@ -27,11 +27,15 @@ export function EditableTextWithLabelForString(label, text, onAcceptClick) {
                 input.value = text;
                 renderContent();
             } else {
-                var success = onAcceptClick(input.value);
-                if(success){
-                    renderContent();
-                    currentValue = input.value;
-                }                
+                onAcceptClick(input.value).then(
+                    success => {
+                        if (success) {
+                            currentValue = input.value;
+                        }
+                        renderContent();
+                    }
+                );
+
             }
         })
 

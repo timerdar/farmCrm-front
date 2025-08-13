@@ -15,16 +15,16 @@ export function EditableConsumerCard(consumer, onClick){
 
     card.appendChild(nameDiv);
     
-    card.appendChild(EditableTextWithLabelForString("Адрес", consumer.address, (newAddress) => {onAddressChange(newAddress)}));
-    card.appendChild(EditableTextWithLabelForString("Телефон", consumer.phone, (newPhone) => {onPhoneChange(newPhone)}));
+    card.appendChild(EditableTextWithLabelForString("Адрес", consumer.address, newAddress => onAddressChange(newAddress)));
+    card.appendChild(EditableTextWithLabelForString("Телефон", consumer.phone, newPhone => onPhoneChange(newPhone)));
 
     return card;
 
-    function onAddressChange(newAddress){
-        changeAddress(consumer.id, newAddress);
+    async function onAddressChange(newAddress){
+        return await changeAddress(consumer.id, newAddress);
     }
 
-    function onPhoneChange(newPhone){
-        changePhone(consumer.id, newPhone);
+    async function onPhoneChange(newPhone){
+        return await changePhone(consumer.id, newPhone);
     }
 }
