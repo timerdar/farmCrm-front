@@ -32,8 +32,7 @@ export function ConsumerCreation(updateClick) {
     div.appendChild(phoneInput);
 
     div.appendChild(IconButton('/src/assets/accept.png', () => {
-        createConsumer(nameInput.value, addressInput.value, phoneInput.value);
-        updateClick();
+        createConsumer(nameInput.value, addressInput.value, phoneInput.value).then(updateClick);
     }))
 
     div.appendChild(IconButton('/src/assets/close.png', () => {
