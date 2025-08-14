@@ -124,10 +124,19 @@ hr {
     gap: 10px
 }
 
+.creation-checkbox{
+    transform: scale(1.5);
+}
+
+.creation-card label{
+    align-items: center;
+}
+
 .forms {
     display: flex;
     flex-direction: row;
 }
+
 
 
 .icon-label {
@@ -217,3 +226,4 @@ hr {
 .mini-card .checkbox{
     transform: scale(1.5);   
 }
+

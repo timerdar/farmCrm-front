@@ -1,42 +1,64 @@
-var products = [
-        {id: 1, name: "Яйцо", cost: 33, orderedCount: 10, createdCount: 4}]
+import { api } from "../core/api.js";
 
-export function createProduct(name, cost){    
-    if (name !== '' && !isNaN(cost) && cost > 0){
-        const newProduct = {id: products.length + 1, name: name, cost: cost, orderedCount: 0, createdCount: 0}
-        products.push(newProduct);
+var products = [
+    { id: 1, name: "Яйцо", cost: 33, orderedCount: 10, createdCount: 4 }]
+
+export async function createProduct(name, cost, isWeight) {
+    try {
+        if (name !== '' && !isNaN(cost) && cost > 0) {
+
+            var data = {
+                name: name,
+                cost: cost,
+                isWeight: isWeight
+            }
+
+            const response = await api().post('/api/products', data);
+            return response.status == 200;
+        }
+
+    } catch (e) {
+        console.log(e);
+        throw e;
     }
 }
 
-export function getProductsList(){
-    return products;
+
+export async function getProductsList() {
+    try{
+        const response = await api().get('/api/products');
+        return response.data;
+    }catch(e){
+        console.log(e);
+        throw e;
+    }
 }
 
-export function changeCost(productId, newCost){
+export function changeCost(productId, newCost) {
     console.log(`${productId} изменили цену на ${newCost}`);
-    
+
     return true;
 }
 
-export function changeCreatedCount(productId, newCreatedCount){
+export function changeCreatedCount(productId, newCreatedCount) {
     console.log(`${productId} изменили изготовлено на ${newCreatedCount}`);
     return true;
 }
 
-export function getShortProductsList(){
+export function getShortProductsList() {
     return [
-        {id: 1, name: "Яйцо"},
-        {id: 2, name: "Курица"}
+        { id: 1, name: "Яйцо" },
+        { id: 2, name: "Курица" }
     ]
 }
 
-export function getProduct(id){
+export function getProduct(id) {
     return products[0];
 }
 
-export function getDeliverySummary(){
+export function getDeliverySummary() {
     return [
-        {id: 1, name: "Яйцо", count: 10, createdCount: 30},
-        {id: 2, name: "Курица", count: 10, createdCount: 30},
+        { id: 1, name: "Яйцо", count: 10, createdCount: 30 },
+        { id: 2, name: "Курица", count: 10, createdCount: 30 },
     ]
 }

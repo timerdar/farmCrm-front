@@ -5,9 +5,9 @@ import { IconButton } from "../../components/IconButton.js";
 import { ProductCreation } from "../../components/creation_forms/ProductCreation.js";
 import { getProductsList } from "../../services/product-service.js";
 
-export function Products() {
+export async function Products() {
 
-    var products = getProductsList();
+    var products = await getProductsList();
 
     const div = document.createElement("div");
     div.className = 'container';
@@ -29,9 +29,9 @@ export function Products() {
 
     const productList = ProductList(products, true);
 
-    function setButton() {
+    async function setButton() {
         const addProductBtn = Button("Добавить продукт", setForm)
-        products = getProductsList();
+        products = await getProductsList();
         productList.update(products);
         replacableDiv.innerHTML = '';
         replacableDiv.appendChild(addProductBtn);
@@ -43,7 +43,7 @@ export function Products() {
         replacableDiv.appendChild(creationForm);
     }
 
-    setButton();
+    await setButton();
 
     searchInput.addEventListener('input', () => {
         if (searchInput.value === '') {

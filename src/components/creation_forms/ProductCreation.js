@@ -25,9 +25,18 @@ export function ProductCreation(updateClick){
     priceInput.placeholder = 'Цена';
     div.appendChild(priceInput);
 
+    const lbl = document.createElement('label');
+    lbl.textContent = 'Весовой товар';
+    div.appendChild(lbl);
+
+    const weightCheckbox = document.createElement('input');
+    weightCheckbox.classList = 'creation-checkbox';
+    weightCheckbox.type = 'checkbox';
+    weightCheckbox.placeholder = 'Вес';
+    div.appendChild(weightCheckbox);
+
     div.appendChild(IconButton('/src/assets/accept.png', () => {        
-        createProduct(nameInput.value, Number(priceInput.value));    
-        updateClick();
+        createProduct(nameInput.value, Number(priceInput.value), weightCheckbox.checked).then(updateClick);    
     }))
 
     div.appendChild(IconButton('/src/assets/close.png', () => {
