@@ -11,7 +11,9 @@ export function ProductCard(product){
     
     div.appendChild(nameDiv);
 
-    const cost = TextWithLabel("Цена", `${product.cost} рублей`);
+    const postfix = product.weighted ? 'кг' : 'шт'; 
+
+    const cost = TextWithLabel("Цена", `${product.cost} руб/${postfix}`);
 
     const count = TextWithLabel("Заказано", `${product.count}`);
 

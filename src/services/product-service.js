@@ -10,7 +10,7 @@ export async function createProduct(name, cost, isWeight) {
             var data = {
                 name: name,
                 cost: cost,
-                isWeight: isWeight
+                weightable: isWeight
             }
 
             const response = await api().post('/api/products', data);
@@ -34,26 +34,54 @@ export async function getProductsList() {
     }
 }
 
-export function changeCost(productId, newCost) {
-    console.log(`${productId} изменили цену на ${newCost}`);
+export async function changeCost(productId, newCost) {
+    try{
+        var data = {
+            id: productId,
+            cost: newCost
+        }
 
-    return true;
+        const response = await api().post('/api/products/change-price', data);
+        return response.status == 200;
+    }catch(e){
+        console.log(e);
+        throw e
+    }
 }
 
-export function changeCreatedCount(productId, newCreatedCount) {
-    console.log(`${productId} изменили изготовлено на ${newCreatedCount}`);
-    return true;
+export async function changeCreatedCount(productId, newCreatedCount) {
+    try{
+        var data = {
+            id: productId,
+            createdCount: newCreatedCount
+        }
+
+        const response = await api().post('/api/products/change-created-count', data);
+        return response.status == 200;
+    }catch(e){
+        console.log(e);
+        throw e;
+    }
 }
 
-export function getShortProductsList() {
-    return [
-        { id: 1, name: "Яйцо" },
-        { id: 2, name: "Курица" }
-    ]
+export async function getShortProductsList() {
+    try{
+        const response = await api().get('/api/products/short');
+        return response.data;
+    }catch(e){
+        console.log(e);
+        throw e;
+    }
 }
 
-export function getProduct(id) {
-    return products[0];
+export async function getProduct(id) {
+    try{
+        const response = await api().get(`/api/products/${id}`);
+        return response.data;
+    }catch(e){
+        console.log(e);
+        throw e;
+    }
 }
 
 export function getDeliverySummary() {

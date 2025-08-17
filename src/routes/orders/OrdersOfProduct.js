@@ -4,15 +4,15 @@ import { EditableProductCard } from '../../components/cards/editable/EditablePro
 import { OrdersList } from '../../components/lists/OrdersList.js';
 import { EditableOrderCard } from "../../components/cards/editable/EditableOrderCard.js";
 
-export function OrdersOfProduct(){
+export async function OrdersOfProduct(){
 
     const id = extractId();
 
     const div = document.createElement('div');
     div.className = 'container';
 
-    const product = getProduct(id);
-    const orders = getCreatedOrdersOfProduct(id);
+    const product = await getProduct(id);
+    const orders = await getCreatedOrdersOfProduct(id);
 
     const productCard = EditableProductCard(product);
     div.appendChild(productCard);

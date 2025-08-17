@@ -12,18 +12,21 @@ export function EditableProductCard(product){
     nameDiv.className = 'name';
     nameDiv.innerText = `${product.name}`
     
-    const onCostClick = (e) => {
-        changeCost(product.id, e);
+    async function onCostClick(e) {
+        return await changeCost(product.id, e);
     }
 
-    const onCreatedCountClick = (e) => {
-        changeCreatedCount(product.id, e);
+    async function onCreatedCountClick(e) {
+        return await changeCreatedCount(product.id, e);
     }
 
     div.appendChild(nameDiv);
-    const cost = EditableTextWithLabelForNumber("Цена", `${product.cost} руб`, onCostClick);
+
+    const posfix = product.weighed ? 'кг': 'шт'
+
+    const cost = EditableTextWithLabelForNumber("Цена", `${product.cost} руб/${posfix}`, newCost => onCostClick(newCost));
     const count = TextWithLabel("Заказано", `${product.orderedCount}`);
-    const createdCount = EditableTextWithLabelForNumber("Изготовлено", `${product.createdCount} шт.`, onCreatedCountClick);
+    const createdCount = EditableTextWithLabelForNumber("Изготовлено", `${product.createdCount} шт.`, newCreatedCount => onCreatedCountClick(newCreatedCount));
 
     count.addEventListener('click', () => {
         navigateTo(`/products/${product.id}/orders`);

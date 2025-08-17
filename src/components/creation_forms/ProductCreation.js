@@ -35,6 +35,7 @@ export function ProductCreation(updateClick){
     weightCheckbox.placeholder = 'Вес';
     div.appendChild(weightCheckbox);
 
+
     div.appendChild(IconButton('/src/assets/accept.png', () => {        
         createProduct(nameInput.value, Number(priceInput.value), weightCheckbox.checked).then(updateClick);    
     }))

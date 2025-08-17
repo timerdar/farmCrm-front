@@ -11,9 +11,8 @@ export async function OrdersOfConsumer(){
     const id = extractId();
     console.log(id);
     
-
     const consumer = await getConsumer(id);
-    var orders = [];
+    var orders = await getCreatedOrdersOfConsumer(id);  
 
     const div = document.createElement('div');
     div.className = 'container';
@@ -21,7 +20,6 @@ export async function OrdersOfConsumer(){
     const h1 = document.createElement("h1");
     h1.textContent = 'Карта заказчика';
     div.appendChild(h1);
-
 
     const consumerCard = EditableConsumerCard(consumer, () => {});
     consumerCard.appendChild(TextWithLabel("Сумма выкупа", `${consumer.totalSum} руб.`));
@@ -33,21 +31,21 @@ export async function OrdersOfConsumer(){
 
     const ordersList = OrdersList(orders, true);
 
-    function setButton(){
+    async function setButton(){
         const addOrderBtn = Button("Добавить заказ", setForm);
-        orders = getCreatedOrdersOfConsumer(id);
+        orders = await getCreatedOrdersOfConsumer(id);
         ordersList.update(orders);
         replacableDiv.innerHTML = '';
         replacableDiv.appendChild(addOrderBtn);
     }
 
-    function setForm(){
-        const creationForm = OrderCreation(id, setButton);
+    async function setForm(){
+        const creationForm = await OrderCreation(id, setButton);
         replacableDiv.innerHTML = '';
         replacableDiv.appendChild(creationForm);
     }
 
-    setButton();
+    await setButton();
 
     div.appendChild(ordersList);
 

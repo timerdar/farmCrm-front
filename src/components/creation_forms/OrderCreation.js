@@ -2,7 +2,9 @@ import { createOrder } from "../../services/order-service.js";
 import { getShortProductsList } from "../../services/product-service.js";
 import { IconButton } from "../IconButton.js";
 
-export function OrderCreation(consumerId, updateClick) {
+export async function OrderCreation(consumerId, updateClick) {
+
+    var unfound;
 
     const div = document.createElement("div");
     div.className = 'creation-card';
@@ -28,7 +30,7 @@ export function OrderCreation(consumerId, updateClick) {
     dropdownList.className = 'dropdown-list';
     dropdown.appendChild(dropdownList);
 
-    const products = getShortProductsList();
+    const products = await getShortProductsList();
     console.log(products);
 
 
@@ -45,7 +47,9 @@ export function OrderCreation(consumerId, updateClick) {
 
         if (filtered.length === 0) {
             dropdownList.innerHTML = `<div>Не найден</div>`;
+            unfound = true;
         } else {
+            unfound = false;
             filtered.forEach(product => {
                 const item = document.createElement("div");
                 item.innerText = product.name;
@@ -70,9 +74,11 @@ export function OrderCreation(consumerId, updateClick) {
     countInput.placeholder = 'Количество';
     mainDiv.appendChild(countInput);
 
-    mainDiv.appendChild(IconButton('/src/assets/accept.png', () => {
-        createOrder(consumerId, localStorage.getItem('creationProductId'), Number(countInput.value));
-        updateClick();
+    mainDiv.appendChild(IconButton('/src/assets/accept.png', async () => {
+        if (!unfound) {
+            await createOrder(consumerId, localStorage.getItem('creationProductId'), Number(countInput.value));
+            updateClick();
+        }
     }))
 
     mainDiv.appendChild(IconButton('/src/assets/close.png', () => {
