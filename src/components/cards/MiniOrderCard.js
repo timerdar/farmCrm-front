@@ -1,5 +1,8 @@
-import { changeOrderStatus } from "../../services/order-service.js";
+import { changeOrderStatus, changeCount, changeWeight } from "../../services/order-service.js";
+import { EditableTextWithLabelForNumber } from "../EditableTextWithLabelForNumber.js";
 import { IconButton } from "../IconButton.js";
+import { TextWithLabel } from "../TextWithLabel.js";
+
 
 export function MiniOrderCard(order, update){
 
@@ -9,6 +12,8 @@ export function MiniOrderCard(order, update){
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     checkbox.className = 'checkbox';
+    checkbox.checked = order.status == 'DONE';
+    div.style.backgroundColor = checkbox.checked ? 'green' : 'white';
 
     checkbox.addEventListener('click', () => {
         if (checkbox.checked){
@@ -27,16 +32,24 @@ export function MiniOrderCard(order, update){
     nameDiv.innerText = order.name;
     div.appendChild(nameDiv);
 
-    const mainDiv = document.createElement("div");
-    mainDiv.className = 'info';
-
-    if (order.isProductWeight){
-        mainDiv.innerText = `${order.count} шт. ${order.weight} кг. ${order.cost} руб.`
-    }else{
-        mainDiv.innerText = `${order.count} шт. ${order.cost} руб.`
+    
+    async function changeOrderCount(newCount){
+        return await changeCount(order.id, newCount);
     }
 
-    div.appendChild(mainDiv);
+    async function changeOrderWeight(newWeight){
+        return await changeWeight(order.id, newWeight);
+    }
+
+    div.appendChild(EditableTextWithLabelForNumber("Количество", `${order.count} шт`, newCount => changeOrderCount(newCount)));
+    
+    if (order.weighed)
+        div.appendChild(EditableTextWithLabelForNumber("Вес", `${order.weight} кг`, newWeight => changeOrderWeight(newWeight)));
+    else 
+        div.appendChild(TextWithLabel("", ""));
+
+    div.appendChild(TextWithLabel("Стоимость", `${order.cost} руб`))
+
     const invis = document.createElement("div");
 
     invis.appendChild(IconButton('/src/assets/product-return.png', () => {

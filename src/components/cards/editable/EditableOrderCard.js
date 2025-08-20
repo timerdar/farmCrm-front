@@ -34,5 +34,15 @@ export function EditableOrderCard(order) {
             };
         }))
 
+    const invis2 = document.createElement('div');
+    card.appendChild(invis2);
+
+    invis2.appendChild(IconButton('/src/assets/remove.png',
+        () => {
+            if (confirm('Уверены, что хотите удалить заказ?') && changeOrderStatus(order.id, 'ARCHIVED'))
+                invis2.innerHTML = '';
+        }
+    ))
+
     return card;
 }

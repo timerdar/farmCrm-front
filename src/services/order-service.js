@@ -12,8 +12,6 @@ export async function changeOrderStatus(orderId, status){
         console.log(e);
         throw e;
     }
-    console.log(`Статус у ${orderId} поменялся на ${status}`);
-    return true;
 }
 
 /*export function getDeliveryOrdersOfConsumer(consumerId){
@@ -47,13 +45,33 @@ export async function getCreatedOrdersOfProduct(productId){
 
 }
 
-export function changeCount(orderId, newCount){
-    console.log(`${orderId} изменили количество на ${newCount}`);
+export async function changeCount(orderId, newCount){
+    try{
+        var data = {
+            id: orderId,
+            amount: newCount
+        }
+        const response = await api().post('/api/orders/change-amount', data);
+        return response.status == 200;
+    }catch(e){
+        console.log(e);
+        throw e;
+    }
     
 }
 
-export function changeWeight(orderId, newWeight){
-    console.log(`${orderId} изменили вес на ${newWeight}`)
+export async function changeWeight(orderId, newWeight){
+    try{
+        var data = {
+            id: orderId,
+            weight: newWeight
+        }
+        const response = await api().post('/api/orders/change-weight', data);
+        return response.status == 200;
+    }catch(e){
+        console.log(e);
+        throw e;
+    }
 }
 
 export async function createOrder(consumerId, productId, amount){
@@ -69,7 +87,6 @@ export async function createOrder(consumerId, productId, amount){
         console.log(e);
         throw e;
     }
-    console.log(`Заказ для ${consumerId} = ${productId} * ${amount}`)
 }
 
 export async function clearDelivery(){
@@ -80,7 +97,6 @@ export async function clearDelivery(){
         console.log(e);
         throw e;
     }
-    console.log("Почистили доставку");
 }
 
 export async function getDeliveryOrders(){

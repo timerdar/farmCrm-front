@@ -33,9 +33,18 @@ export function EditableTextWithLabelForNumber(label, text, onAcceptClick){
         input.size = 8;
 
         input.addEventListener('blur', () => {
-            if (input.value > 0){
-                onAcceptClick(input.value);
-                currentValue = input.value;
+            if (!input.value || input.value < 0){
+                input.value = text;
+                renderContent();
+            } else{
+                onAcceptClick(input.value).then(
+                    success => {
+                        if(success)
+                            currentValue = input.value;
+                        renderContent();
+                    }
+                )
+
             }
             renderContent();
         })
