@@ -30,23 +30,23 @@ export function EditableTextWithLabelForNumber(label, text, onAcceptClick){
         const input = document.createElement('input');
         input.type = 'number';
         input.placeholder = label;
+        input.value = currentValue;
         input.size = 8;
 
         input.addEventListener('blur', () => {
-            if (!input.value || input.value < 0){
-                input.value = text;
+            const num = parseFloat(input.value);
+
+            if (isNaN(num) || num < 0){
                 renderContent();
-            } else{
-                onAcceptClick(input.value).then(
+            } else {
+                onAcceptClick(num).then(
                     success => {
                         if(success)
-                            currentValue = input.value;
+                            currentValue = num;
                         renderContent();
                     }
-                )
-
+                );
             }
-            renderContent();
         })
 
         input.addEventListener('keydown', (e) => {

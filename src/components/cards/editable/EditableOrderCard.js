@@ -13,13 +13,18 @@ export function EditableOrderCard(order) {
     nameDiv.textContent = order.name;
     card.appendChild(nameDiv);
 
-    const onWeightChange = (newWeight) => { changeWeight(order.id, newWeight)};
-    const onCountChange = (newCount) => { changeCount(order.id, newCount) };
+    async function onWeightChange(newWeight) {
+        return await changeWeight(order.id, newWeight)
+    };
+
+    async function onCountChange(newCount) {
+        return await changeCount(order.id, newCount)
+    };
 
     if (order.isProductWeight) {
-        card.appendChild(EditableTextWithLabelForNumber("Вес", `${order.weight} кг.`, onWeightChange));
+        card.appendChild(EditableTextWithLabelForNumber("Вес", `${order.weight} кг.`, newWeight => {onWeightChange(newWeight)}));
     }
-    card.appendChild(EditableTextWithLabelForNumber("Кол-во", `${order.count} шт.`, onCountChange));
+    card.appendChild(EditableTextWithLabelForNumber("Кол-во", `${order.count} шт.`, newCount => onCountChange(newCount)));
 
 
     card.appendChild(TextWithLabel("Сумма", `${order.cost} руб.`));

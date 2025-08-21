@@ -11,7 +11,7 @@ export function OrdersList(orders, isEditable){
         data.forEach(order => {
             const li = document.createElement("li");
             if(isEditable){
-                li.appendChild(EditableOrderCard(order));
+                li.appendChild(EditableOrderCard(order, render));
             }else{
                 li.appendChild(OrderCard(order));
             }
