@@ -84,9 +84,3 @@ export async function getProduct(id) {
     }
 }
 
-export function getDeliverySummary() {
-    return [
-        { id: 1, name: "Яйцо", count: 10, createdCount: 30 },
-        { id: 2, name: "Курица", count: 10, createdCount: 30 },
-    ]
-}

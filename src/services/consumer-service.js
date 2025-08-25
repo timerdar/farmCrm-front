@@ -64,3 +64,13 @@ export async function getConsumer(consumerId){
         throw e;
     }
 }
+
+export async function setConsumersOrder(data) {
+    try{
+        const response = await api().post("/api/consumers/set-consumers-order", data);
+        return response.status == 200;
+    }catch(e){
+        console.log(e);
+        throw e;
+    }
+}

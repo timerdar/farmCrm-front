@@ -52,7 +52,7 @@ export async function changeCount(orderId, newCount){
             amount: newCount
         }
         const response = await api().post('/api/orders/change-amount', data);
-        return response.status == 200;
+        return response;//.status == 200;
     }catch(e){
         console.log(e);
         throw e;
@@ -67,7 +67,7 @@ export async function changeWeight(orderId, newWeight){
             weight: newWeight
         }
         const response = await api().post('/api/orders/change-weight', data);
-        return response.status == 200;
+        return response;//.status == 200;
     }catch(e){
         console.log(e);
         throw e;
@@ -102,6 +102,16 @@ export async function clearDelivery(){
 export async function getDeliveryOrders(){
     try{
         const response = await api().get("/api/orders/delivery");
+        return response.data;
+    }catch(e){
+        console.log(e);
+        throw e;
+    }
+}
+
+export async function getDeliverySummary() {
+    try{
+        const response = await api().get("/api/orders/delivery-summary");
         return response.data;
     }catch(e){
         console.log(e);

@@ -19,9 +19,11 @@ export function MiniOrderCard(order, update){
         if (checkbox.checked){
             changeOrderStatus(order.id, 'DONE');
             div.style.backgroundColor = 'green';
+            order.status = "DONE";
         }else{
             changeOrderStatus(order.id, 'DELIVERY');
             div.style.backgroundColor = 'white';
+            order.status = "DELIVERY";
         }
     });
 
@@ -34,11 +36,22 @@ export function MiniOrderCard(order, update){
 
     
     async function changeOrderCount(newCount){
-        return await changeCount(order.id, newCount);
+        const response = await changeCount(order.id, newCount);
+        if (response.status == 200){
+            cost.content.textContent = `${response.data.cost} руб`;
+            order.cost = response.data.cost;
+            return true;
+        }
+        return false;
     }
 
     async function changeOrderWeight(newWeight){
-        return await changeWeight(order.id, newWeight);
+        const response = await changeWeight(order.id, newWeight);
+        if (response.status == 200){
+            cost.content.textContent = `${response.data.cost} руб`;
+            return true;
+        }
+        return false;
     }
 
     div.appendChild(EditableTextWithLabelForNumber("Количество", `${order.count} шт`, newCount => changeOrderCount(newCount)));
@@ -48,7 +61,10 @@ export function MiniOrderCard(order, update){
     else 
         div.appendChild(TextWithLabel("", ""));
 
-    div.appendChild(TextWithLabel("Стоимость", `${order.cost} руб`))
+
+    const cost = TextWithLabel("Стоимость", `${order.cost} руб`);
+    div.cost = cost;
+    div.appendChild(cost)
 
     const invis = document.createElement("div");
 

@@ -7,6 +7,8 @@ import { Delivery } from "../routes/delivery/Delivery.js"
 import { OrdersOfConsumer } from "../routes/orders/OrdersOfConsumer.js";
 import { OrdersOfProduct } from "../routes/orders/OrdersOfProduct.js";
 import { DeliverySummary } from "../routes/delivery/DeliverySummary.js";
+import { IconButton } from "../components/IconButton.js";
+import { navigateTo } from "./navigate.js";
 
 const routes = {
     '^/menu$': Menu,
@@ -34,6 +36,12 @@ export function router() {
                 break;
             }
         };
+    }
+
+    const body = document.getElementById('body');
+    if(body.innerHTML == ''){
+        body.appendChild(IconButton("/src/assets/list.png", () => {navigateTo('/menu')}));
+        body.appendChild(IconButton("/src/assets/refresh-page-option.png", () => {window.location.reload()}));
     }
 
     const app = document.getElementById('app');

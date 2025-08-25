@@ -1,7 +1,7 @@
-import { getDeliverySummary } from "../../services/product-service.js";
+import { getDeliverySummary } from "../../services/order-service.js";
 
-export function DeliverySummary(){
-    const orders = getDeliverySummary();
+export async function DeliverySummary(){
+    const orders = await getDeliverySummary();
 
     const div = document.createElement("div");
     div.className = 'container';
@@ -11,9 +11,10 @@ export function DeliverySummary(){
     div.appendChild(h1);
 
     const list = document.createElement('ul');
+
     for (let order of orders){
         const li = document.createElement('li');
-        li.innerHTML = `${order.name} - готово ${order.createdCount} из ${order.count}`;
+        li.innerHTML = `${order.productName} - готово <b>${order.createdCount}</b> из <b>${order.orderedCount}</b>. Свободно: ${order.createdCount - order.orderedCount}`;
         list.appendChild(li);
     }
 

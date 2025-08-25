@@ -14,11 +14,15 @@ export function EditableOrderCard(order) {
     card.appendChild(nameDiv);
 
     async function onWeightChange(newWeight) {
-        return await changeWeight(order.id, newWeight)
+        const response = await changeWeight(order.id, newWeight);
+        cost.content.textContent = response.data.cost;
+        return response.status == 200;
     };
 
     async function onCountChange(newCount) {
-        return await changeCount(order.id, newCount)
+        const response = await changeCount(order.id, newCount);
+        cost.content.textContent = `${response.data.cost} руб.`;
+        return response.status == 200;
     };
 
     if (order.isProductWeight) {
@@ -27,7 +31,8 @@ export function EditableOrderCard(order) {
     card.appendChild(EditableTextWithLabelForNumber("Кол-во", `${order.count} шт.`, newCount => onCountChange(newCount)));
 
 
-    card.appendChild(TextWithLabel("Сумма", `${order.cost} руб.`));
+    const cost = TextWithLabel("Сумма", `${order.cost} руб.`);
+    card.appendChild(cost);
 
     const invis = document.createElement("div");
     card.appendChild(invis);
