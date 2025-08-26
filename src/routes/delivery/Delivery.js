@@ -41,12 +41,12 @@ export async function Delivery() {
 
         const orderData = [];
         div.querySelectorAll('.consumer-with-orders-card').forEach((item, index) => {
-            orderData.push({consumerId: item.id, deliveryOrderNumber: index + 1});
+            orderData.push({ consumerId: item.id, deliveryOrderNumber: index + 1 });
         });
 
         setConsumersOrder(orderData).then(
             resp => {
-                if(resp){
+                if (resp) {
                     window.location.reload();
                 }
             }
@@ -113,6 +113,8 @@ export async function Delivery() {
         }
         draggedItem = null;
     });
+
+
 
 
 
